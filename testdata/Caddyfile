@@ -1,0 +1,17 @@
+
+{
+    order promnats before file_server
+}
+
+
+localhost {
+    handle_errors {
+        respond "error {err.status_code} {err.status_text}"
+    }
+    handle_path /metrics/* {
+        promnats {
+            context hermod-rfid
+        }
+    }
+    respond "foo"
+}
